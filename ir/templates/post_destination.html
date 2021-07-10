@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiva="X-UA-Compatible" content="IE=edge">
+    <title>Post Destination</title>
+<style>
+
+body{
+  background:#f8fafc;
+}
+
+.content{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .login-container{
+        background: white;
+        position: relative;
+        border-radius: 5px;
+        display: flex;
+        width: 35vw;
+        height: 85vh;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.07);
+        transition: .4s;
+    }
+    
+    
+    .login{
+        transition: .4s;
+        font-family: Comfortaa;
+    }
+    
+    .login#login-form{
+        width: 100%;
+        display: block;
+        padding: 15px;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        margin-top: 20px;
+    }
+    
+    .login#login-bg{
+        width: 50%;
+        display: inline-flex;
+        background: url(https://picsum.photos/700);
+        background-size: cover;
+        background-position: center center;
+        float: right;
+        border-radius: 0 5px 5px 0;
+    }
+    
+    .register{
+        width: 50%;
+        display: block;
+        padding: 15px;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        margin-top: 30px;
+        transition: .4s;
+        font-family: Comfortaa;
+        display: none;
+    }
+    
+    
+    .form-title{
+       position: absolute;
+       top: 11%;
+       left: 0;
+       right: 0;
+       text-align: center;
+       color: #dedede;
+       font-size: 2.2em;
+       font-family: Spartan;
+       line-height: 1.4;
+       margin-top: -24px;
+    }
+    
+    .form-title hr{
+        width: 75%;
+        border: 2px solid #dedede1f;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    
+    .register .form-title{
+            margin-top: -54px;
+    }
+    
+    
+    .form-container{
+        padding: 25px 10px;
+        border-radius: 5px;
+        width: 80%;
+        text-align: left;
+        margin-top: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    
+    label{
+        font-size: .7em;
+        color: #7392ff;
+        margin: 0px 0 !important;
+        margin-left: 4px !important;
+    }
+    
+    input{
+        background: #f8fafc ;
+        border: 0;
+        width: 100%;
+        display: block;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-bottom: 20px !important;
+        outline: 0;
+        transition: .4s;
+    }
+    
+    input::placeholder{
+        opacity: .4;
+    }
+    
+    .submit-buttons{
+        display: flex;
+    }
+    
+    .submit-buttons input{
+        width: 50%;
+        text-align: center;
+        color: white;
+        transition: .2s;
+    }
+    
+    .submit-buttons input:hover{
+        opacity: .7;
+    }
+    
+    .submit-buttons input:nth-of-type(1){
+        border-radius: 5px 5px 5px 5px;
+        background: #54a0ff;
+    }
+    
+    .submit-buttons input:nth-of-type(2){
+        border-radius: 0 5px 5px 0;
+        background: #c8d6e5;
+    }
+    
+    @media (max-width:933px){
+        .login#login-bg{
+            width: 0;
+        }
+        
+         .login#login-form,.register{
+            width: 100%;
+        }
+        
+        input{
+            width: 100%;
+        }
+    }
+
+</style>
+    </head>
+<body>
+
+<div class="container">
+      <div class="content">
+
+        <div class="login-container animated fadeInDown" style="animation-delay:.3s;">
+         <!--   Login   --> 
+            <div class="login justify-content-center" id="login-form">
+              <h3 class="tt" style="
+    position: relative;
+    text-align: center;
+    color: darkblue;
+    font-size: xx-large;
+    display: inline;
+"><i style="color:#55a0ff;"></i> <br> POST PRODUCT  <hr></h3>
+       
+               <div class="form-container animated fadeIn" style="animation-delay:.7s;">
+                <form method="POST" action="postdestination" enctype="multipart/form-data" onsubmit="return validateForm()" name="MyForm">
+                   {% csrf_token %}
+                    <label for=""><i class="fas fa-at"></i>Name </label>
+                    <input type="text" name="name" placeholder="Name" required><b><span class="formerror"></span></b>
+
+                    <label for=""><i class="fab fa-slack-hash"></i>Image </label>
+                    <input type="file" name="img" accept="image/*" required="" id="id_img"><b><span class="formerror"></span></b>
+                    
+                    <label for=""><i class="fab fa-slack-hash"></i> Description </label>
+                    <input type="text" name="description" placeholder="Description" required><b><span class="formerror"></span></b>
+                    
+                    <label for=""><i class="fab fa-slack-hash"></i> Price </label>
+                    <input type="number" min="1" step="any" name="price" placeholder="Price(in dollars)" default = "$" required><b><span class="formerror"></span></b>
+
+                    <div>
+                        <div>
+                        <input type="checkbox" name="offer" style="
+    padding: 0px;
+    margin: 0px;
+    width: 20px;
+    float: left;
+">
+                        <label style="margin-top: 3px !important;/* padding-bottom: 1px !important; */float: left;"><i class="fab fa-slack-hash"></i> Offer </label>
+                        
+                    </div>
+                    
+
+                    
+                    <div class="submit-buttons">
+                        <input type="submit" style="margin-top: 40px;
+    margin-left: 300px;">
+                        
+                    </div>
+                        
+                    </div>
+                    
+                </form>
+              </div>
+            </div>
+            <!--   Login   --> 
+            
+            {% comment %} <!--    Register    -->
+             
+            <div class="register justify-content-cente animatedr"  style="animation-delay:.3s">
+              <h1 class="form-title "><i class="fas fa-user-plus" style="color:#57efc4;"></i> <br> REGISTER <hr></h1>
+       
+               <div class="form-container animated fadeIn" style="animation-delay:.7s;">
+                <form method="POST" action="login">
+                   
+                    
+                    <label for=""><i class="fab fa-amilia"></i> Name </label>
+                     <input  type="text" name="name" placeholder="Name" required autofocus>
+                    
+                     <label for=""><i class="fas fa-at"></i>Name </label>
+                    <input type="text" name="Name" placeholder="Name">
+                    
+                    <label for=""><i class="fab fa-slack-hash"></i> Description </label>
+                    <input type="text" name="Description" placeholder="Description">
+                    
+                    <label for=""><i class="fab fa-slack-hash"></i> Price </label>
+                    <input type="number" min="1" step="any" name="Price" placeholder="Price(in dollars)">
+
+                    <label for=""><i class="fab fa-slack-hash"></i> Price </label>
+                    <input type="file" min="1" step="any" name="Price" placeholder="Price(in dollars)">
+
+                    <div class="submit-buttons">
+                        <input type="submit" style="margin-left: 200px;" style="background:#55efc4;">
+                        
+                    </div>
+                    
+                </form>
+                <div>
+      {% for message in messages %}
+      <h3>{{ message }}</h3>
+      {% endfor %}
+      </div>
+              </div>
+            </div>
+            
+            <!--    Register    --> {% endcomment %}
+            
+            
+            
+        </div>
+        
+      </div> 
+    </div>
+
+</body>
+<script type="text/javascript">
+function clearErrors(){
+
+    errors = document.getElementsByClassName('formerror');
+    for(let item of errors)
+    {
+        item.innerHTML = "";
+    }
+
+
+}
+function seterror(id, error){
+    //sets error inside tag of id 
+    element = document.getElementById(id);
+    element.getElementsByClassName('formerror')[0].innerHTML = error;
+
+}
+
+function validateForm(){
+    var returnval = true;
+    clearErrors();
+
+    //perform validation and if validation fails, set the value of returnval to false
+    var name = document.forms['MyForm']["name"].value;
+    if (name.length<5){
+        seterror("name", "*Length of name is too short");
+        returnval = false;
+    }
+
+    if (name.length == 0){
+        seterror("name", "*Length of name cannot be zero!");
+        returnval = false;
+    }
+    
+    var description = document.forms['MyForm']["description"].value
+    if (description.length == 0){
+        seterror("name", "*Length of description cannot be zero!");
+        returnval = false;
+    }
+
+    return returnval;
+}
+</script>
+</html>

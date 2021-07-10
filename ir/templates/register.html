@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiva="X-UA-Compatible" content="IE=edge">
+    <title>Registration</title>
+</head>   
+<style>html {
+  height: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#17c9db, #c9d517);
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgb(3 255 243 / 50%);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 50px;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.login-box a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.login-box a span {
+  position: absolute;
+  display: block;
+}
+
+.login-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+input[type=submit] {
+  
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #05db96;
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+</style>
+<script type="text/javascript">
+function clearErrors(){
+
+    errors = document.getElementsByClassName('formerror');
+    for(let item of errors)
+    {
+        item.innerHTML = "";
+    }
+
+
+}
+function seterror(id, error){
+    //sets error inside tag of id 
+    element = document.getElementById(id);
+    element.getElementsByClassName('formerror')[0].innerHTML = error;
+
+}
+
+function validateForm(){
+    var returnval = true;
+    clearErrors();
+
+    
+    var first_name = document.getElementById('first_name').value;
+    if (first_name.length<5){
+        seterror("first_name", "*Length of name is too short");
+        console.log("blah")
+        returnval = false;
+    }
+
+    if (first_name.length == 0){
+        seterror("first_name", "*Length of name cannot be zero!");
+        returnval = false;
+    }
+    var last_name = document.getElementById('last_name');.value
+    if (last_name.length<5){
+        seterror("last_name", "*Length of name is too short");
+        returnval = false;
+    }
+
+    if (last_name.length == 0){
+        seterror("last_name", "*Length of name cannot be zero!");
+        returnval = false;
+    }
+
+    var email = document.getElementById('email').value;
+    if (email.length>15){
+        seterror("email", "*Email length is too long");
+        returnval = false;
+    }
+
+    var username = document.getElementById('username').value;
+    if (username.length < 10){
+        seterror("username", "*Username length is too short");
+        returnval = false;
+    }
+
+    var password1 = document.getElementById('password1').value;
+    if (password1.length < 6){
+
+        // Quiz: create a logic to allow only those passwords which contain atleast one letter, one number and one special character and one uppercase letter
+        seterror("password1", "*Password should be atleast 6 characters long!");
+        returnval = false;
+    }
+
+    var password2 = document.getElementById('password2').value;
+    if (password2 != password1){
+        seterror("password2", "*Password and Confirm password should match!");
+        returnval = false;
+    }
+
+    return returnval;
+}
+}
+
+</script>
+
+<body>
+<div class="login-box">
+  <h2>Register</h2>
+  <form action="register" method="post" name="myForm" onsubmit="return validateForm()">
+{% csrf_token %}
+    <div class="user-box">
+      <input type="text" name="first_name" id="first_name" required=""><b><span class="formerror"> </span></b>
+      <label>First name</label>
+    </div>
+    <div class="user-box">
+      <input type="text" name="last_name" id="last_name" required=""><b><span class="formerror"> </span></b>
+      <label>Last name</label>
+    </div>
+    
+    <div class="user-box">
+      <input type="text" name="username" id="username" required=""><b><span class="formerror"> </span></b>
+      <label>Username</label>
+    </div>
+<div class="user-box">
+      <input type="email" name="email" id="email" required=""><b><span class="formerror"> </span></b>
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password1" id="password1" required=""><b><span class="formerror"> </span></b>
+      <label>Password</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password2" id="password2" required=""><b><span class="formerror"> </span></b>
+      <label>Confirm password</label>
+    </div>
+    <input class="but" type="submit" value="Submit">
+  </form>
+<div>
+      {% for message in messages %}
+      <h3>{{ message }}</h3>
+      {% endfor %}
+      </div>
+</div>
+</body>
+
+</html>
